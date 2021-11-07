@@ -1,5 +1,14 @@
 # OpenGL
 
+目录结构
+
+* API：OpenGL 相关接口信息
+* Depend：依赖的资源
+* LearnOpenGL：[learnopengl-cn](https://learnopengl-cn.github.io/)学习笔记
+* Project：代码工程
+
+
+
 相关资料
 
 * [OpenGl](https://www.opengl.org/)

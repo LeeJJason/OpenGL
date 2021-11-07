@@ -12,8 +12,6 @@ void glVertexAttribLPointer(GLuint index, GLint size, GLenum type, GLsizei strid
 
 **`index`**
 
-Specifies the index of the generic vertex attribute to be modified.
-
 指定被改变的通用顶点属性得索引
 
 **`size`**
