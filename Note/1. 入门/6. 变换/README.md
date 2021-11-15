@@ -61,4 +61,53 @@ $$
 
 ![](matrice_combining.png)
 
-注意，当矩阵相乘时我们**先写位移再写缩放变换**的，**矩阵乘法不遵守交换律**，这意味着它们的顺序很重要。当矩阵相乘时，在最右边的矩阵是第一个与向量相乘的，所以你应该**从右向左读这个乘法**，建议在组合矩阵时，先进行缩放操作，然后是旋转，最后才是位移，否则会互相影响
+注意，当矩阵相乘时我们**先写位移再写缩放变换**的，**矩阵乘法不遵守交换律**，这意味着它们的顺序很重要。当矩阵相乘时，在最右边的矩阵是第一个与向量相乘的，所以你应该**从右向左读这个乘法**，建议在组合矩阵时，先**进行缩放操作，然后是旋转，最后才是位移**，否则会互相影响
+
+## 实践
+
+我们来看看是否可以利用我们刚学的变换知识把一个向量(1, 0, 0)位移(1, 1, 0)个单位（注意，我们把它定义为一个`glm::vec4`类型的值，齐次坐标设定为1.0）：
+
+```c
+glm::vec4 vec(1.0f, 0.0f, 0.0f, 1.0f); // 向量(1, 0, 0)
+// 如果使用的是0.9.9及以上版本，下面这行代码就需要改为:
+// glm::mat4 trans = glm::mat4(1.0f)
+glm::mat4 trans; // 单位矩阵
+// 传递单位矩阵和一个位移向量
+trans = glm::translate(trans, glm::vec3(1.0f, 1.0f, 0.0f)); 
+vec = trans * vec; // trans为位移矩阵
+std::cout << vec.x << vec.y << vec.z << std::endl; // 210
+```
+
+旋转和缩放之前教程中的那个箱子：
+
+```c
+glm::mat4 trans;
+trans = glm::rotate(trans, glm::radians(90.0f), glm::vec3(0.0, 0.0, 1.0));
+trans = glm::scale(trans, glm::vec3(0.5, 0.5, 0.5)); 
+
+//将数据传递给shader
+unsigned int transformLoc = glGetUniformLocation(ourShader.ID, "transform");
+glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
+```
+
+我们把箱子在每个轴都缩放到0.5倍，然后沿z轴旋转90度，GLM希望它的角度是弧度制的(Radian)，所以我们使用`glm::radians`将角度转化为弧度，注意有纹理的那面矩形是在XY平面上的，所以我们需要把它绕着z轴旋转，因为我们把这个矩阵传递给了GLM的每个函数，GLM会自动将矩阵相乘，返回的结果是一个包括了多个变换的变换矩阵
+
+如何把矩阵传递给着色器？我们在前面简单提到过GLSL里也有一个`mat4`类型，所以我们将修改顶点着色器让其接收一个`mat4`的uniform变量，然后再用矩阵uniform乘以位置向量：
+
+```glsl
+// vertex shader
+#version 330 core
+layout (location = 0) in vec3 aPos;
+layout (location = 1) in vec2 aTexCoord;
+
+out vec2 TexCoord;
+
+uniform mat4 transform;
+
+void main()
+{
+    gl_Position = transform * vec4(aPos, 1.0f);
+    TexCoord = vec2(aTexCoord.x, 1.0 - aTexCoord.y);
+}
+```
+
