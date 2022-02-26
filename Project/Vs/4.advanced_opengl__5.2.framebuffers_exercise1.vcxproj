@@ -26,7 +26,7 @@
     <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
     <Keyword>Win32Proj</Keyword>
     <Platform>x64</Platform>
-    <ProjectName>4.advanced_opengl__5.2.framebuffers_exercise1</ProjectName>
+    <ProjectName>4.advanced_opengl__05.2.framebuffers_exercise1</ProjectName>
     <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -120,7 +120,8 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PreBuildEvent>
-      <Message>			</Message>
+      <Message>
+      </Message>
       <Command>setlocal
 "C:\Program Files\cmake-3.22.0-rc2-windows-x86_64\bin\cmake.exe" -E copy E:/GIT/LearnOpenGL/src/4.advanced_opengl/5.2.framebuffers_exercise1/5.2.framebuffers.fs E:/GIT/LearnOpenGL/bin/4.advanced_opengl/Debug
 if %errorlevel% neq 0 goto :cmEnd
@@ -204,7 +205,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PreBuildEvent>
-      <Message>			</Message>
+      <Message>
+      </Message>
       <Command>setlocal
 "C:\Program Files\cmake-3.22.0-rc2-windows-x86_64\bin\cmake.exe" -E copy E:/GIT/LearnOpenGL/src/4.advanced_opengl/5.2.framebuffers_exercise1/5.2.framebuffers.fs E:/GIT/LearnOpenGL/bin/4.advanced_opengl/Release
 if %errorlevel% neq 0 goto :cmEnd
@@ -288,7 +290,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PreBuildEvent>
-      <Message>			</Message>
+      <Message>
+      </Message>
       <Command>setlocal
 "C:\Program Files\cmake-3.22.0-rc2-windows-x86_64\bin\cmake.exe" -E copy E:/GIT/LearnOpenGL/src/4.advanced_opengl/5.2.framebuffers_exercise1/5.2.framebuffers.fs E:/GIT/LearnOpenGL/bin/4.advanced_opengl/MinSizeRel
 if %errorlevel% neq 0 goto :cmEnd
@@ -371,7 +374,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PreBuildEvent>
-      <Message>			</Message>
+      <Message>
+      </Message>
       <Command>setlocal
 "C:\Program Files\cmake-3.22.0-rc2-windows-x86_64\bin\cmake.exe" -E copy E:/GIT/LearnOpenGL/src/4.advanced_opengl/5.2.framebuffers_exercise1/5.2.framebuffers.fs E:/GIT/LearnOpenGL/bin/4.advanced_opengl/RelWithDebInfo
 if %errorlevel% neq 0 goto :cmEnd
